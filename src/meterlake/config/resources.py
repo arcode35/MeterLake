@@ -1,8 +1,5 @@
 from dataclasses import dataclass
 
-from dataclasses import dataclass
-
-
 @dataclass(frozen=True)
 class BronzeResources:
     catalog: str
