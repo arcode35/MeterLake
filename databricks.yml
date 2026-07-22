@@ -1,0 +1,70 @@
+bundle:
+  name: meterlake_project
+  uuid: 6d5a56ae-f324-4719-a3a8-bdc8e0306a8f
+
+include:
+  - resources/jobs/*.yml
+  - resources/pipelines/*.yml
+
+variables:
+  catalog:
+    description: Unity Catalog catalog for the active deployment target
+
+  bronze_schema:
+    description: Schema for raw ingested Bronze Delta tables
+    default: bronze
+
+  silver_schema:
+    description: Schema for cleaned and conformed Silver Delta tables
+    default: silver
+
+  gold_schema:
+    description: Schema for analytics-ready Gold Delta tables
+    default: gold
+
+  ops_schema:
+    description: Schema for operational metadata and resources
+    default: ops
+
+  dq_schema:
+    description: Schema for data quality results and quarantined records
+    default: data_quality
+
+targets:
+  dev:
+    mode: development
+    default: true
+
+    workspace:
+      host: https://adb-7405616894438593.13.azuredatabricks.net
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+
+    run_as:
+      user_name: roshanaldrin@gmail.com
+
+    variables:
+      catalog: meterlake_dev
+
+    permissions:
+      - user_name: roshanaldrin@gmail.com
+        level: CAN_MANAGE
+
+  prod:
+    mode: production
+
+    workspace:
+      host: https://adb-7405605482323376.16.azuredatabricks.net
+      root_path: /Shared/.bundle/${bundle.name}/${bundle.target}
+
+    git:
+      branch: main
+
+    run_as:
+      user_name: roshanaldrin@gmail.com
+
+    variables:
+      catalog: meterlake_prod
+
+    permissions:
+      - user_name: roshanaldrin@gmail.com
+        level: CAN_MANAGE

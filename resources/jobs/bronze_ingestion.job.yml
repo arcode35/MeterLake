@@ -1,0 +1,39 @@
+resources:
+  jobs:
+    bronze_ingestion:
+      name: "[${bundle.target}] MeterLake Bronze Ingestion"
+
+      parameters:
+        - name: catalog
+          default: ${var.catalog}
+
+      tasks:
+        - task_key: ingest_all_feeds
+
+          for_each_task:
+            concurrency: 3
+
+            inputs: >-
+              [
+                {"feed_name": "usage_events"},
+                {"feed_name": "billing_events"},
+                {"feed_name": "invoice_line_items"},
+                {"feed_name": "plan_changes"},
+                {"feed_name": "pricing_plans"},
+                {"feed_name": "customers"},
+                {"feed_name": "commercial_adjustments"}
+              ]
+
+            task:
+              task_key: ingest_feed
+
+              python_wheel_task:
+                package_name: meterlake
+                entry_point: bronze_ingestion
+
+                named_parameters:
+                  catalog: "{{job.parameters.catalog}}"
+                  feed_name: "{{input.feed_name}}"
+
+              libraries:
+                - whl: ../../dist/*.whl
