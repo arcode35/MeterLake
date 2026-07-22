@@ -1,9 +1,0 @@
-Metadata-Version: 2.4
-Name: meterlake
-Version: 0.1.1
-Summary: Usage-based billing and revenue analytics lakehouse
-Requires-Python: >=3.10
-Provides-Extra: dev
-Requires-Dist: build<2,>=1.2; extra == "dev"
-Requires-Dist: pytest<9,>=8; extra == "dev"
-Requires-Dist: pyspark==4.0.0; extra == "dev"
