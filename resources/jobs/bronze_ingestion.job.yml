@@ -24,7 +24,7 @@ resources:
                 {"feed_name": "usage_events"},
                 {"feed_name": "billing_events"},
                 {"feed_name": "invoice_line_items"},
-                {"feed_name": "plan_changes"},
+                {"feed_name": "customer_subscriptions"},
                 {"feed_name": "pricing_plans"},
                 {"feed_name": "customers"},
                 {"feed_name": "commercial_adjustments"}

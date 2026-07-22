@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: meterlake
-Version: 0.1.0
+Version: 0.1.1
 Summary: Usage-based billing and revenue analytics lakehouse
 Requires-Python: >=3.10
 Provides-Extra: dev

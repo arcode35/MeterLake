@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "meterlake"
-version = "0.1.0"
+version = "0.1.1"
 description = "Usage-based billing and revenue analytics lakehouse"
 requires-python = ">=3.10"
 dependencies = []
@@ -17,7 +17,7 @@ dev = [
 ]
 
 [project.scripts]
-bronze_ingestion = "meterlake.jobs.bronze_ingestion:main"
+bronze_ingestion = "meterlake.jobs.bronze_ingestion:cli"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

@@ -1,7 +1,7 @@
 from typing import Final
 from meterlake.schemas.bronze import BRONZE_FEED_SCHEMAS
 
-VALID_ENVIRONMENTS: Final[frozenset[str]] = frozenset({"meterlake_dev", "meterlake_prod"})
+VALID_ENVIRONMENTS: Final[frozenset[str]] = frozenset({"dev", "prod"})
 VALID_FEEDS: Final[frozenset[str]] = frozenset(BRONZE_FEED_SCHEMAS)
 VALID_TRIGGER_MODES: Final[frozenset[str]] = frozenset(
     {"available_now", "processing_time"}
