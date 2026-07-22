@@ -2,7 +2,8 @@ from typing import Final
 
 from pyspark.sql.types import StringType, StructField, StructType
 
-# Define the individual StructType schemas above this dictionary.
+# MeterLake follows a permissive bronze structure. 
+# Data is ingested as strings into the Lakehouse.
 
 STRING = StringType()
 
