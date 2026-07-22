@@ -7,6 +7,12 @@ resources:
         - name: catalog
           default: ${var.catalog}
 
+        - name: trigger_mode
+          default: available_now
+
+        - name: processing_time
+          default: ""
+
       tasks:
         - task_key: ingest_all_feeds
 
@@ -34,6 +40,14 @@ resources:
                 named_parameters:
                   catalog: "{{job.parameters.catalog}}"
                   feed_name: "{{input.feed_name}}"
+                  trigger_mode: "{{job.parameters.trigger_mode}}"
+                  processing_time: "{{job.parameters.processing_time}}"
 
-              libraries:
-                - whl: ../../dist/*.whl
+              environment_key: default
+
+      environments:
+        - environment_key: default
+          spec:
+            environment_version: "4"
+            dependencies:
+              - ../../dist/*.whl

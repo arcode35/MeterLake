@@ -9,8 +9,15 @@ description = "Usage-based billing and revenue analytics lakehouse"
 requires-python = ">=3.10"
 dependencies = []
 
+[project.optional-dependencies]
+dev = [
+    "build>=1.2,<2",
+    "pytest>=8,<9",
+    "pyspark==4.0.0",
+]
+
 [project.scripts]
-bronze_ingestion = "meterlake.jobs.bronze_ingestion_job:main"
+bronze_ingestion = "meterlake.jobs.bronze_ingestion:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

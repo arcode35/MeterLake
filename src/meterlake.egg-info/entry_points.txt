@@ -1,0 +1,2 @@
+[console_scripts]
+bronze_ingestion = meterlake.jobs.bronze_ingestion:main
