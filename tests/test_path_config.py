@@ -15,6 +15,6 @@ def test_bronze_resources_use_catalog_directly() -> None:
         "/Volumes/meterlake_dev/ops/checkpoints/"
         "autoloader/billing_events"
     )
-    assert resources.target_table == (
+    assert resources.bronze_table == (
         "meterlake_dev.bronze.billing_events"
     )
