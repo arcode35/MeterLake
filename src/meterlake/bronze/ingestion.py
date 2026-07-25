@@ -48,7 +48,7 @@ def ingest_bronze(
         catalog=catalog,
         feed_name=feed_name,
         source_path=resources.source_path,
-        target_table=resources.target_table,
+        target_table=resources.bronze_table,
         checkpoint_path=resources.checkpoint_path,
     )
 
@@ -92,7 +92,7 @@ def ingest_bronze(
             processing_time=processing_time,
         )
 
-        query = writer.toTable(resources.target_table)
+        query = writer.toTable(resources.bronze_table)
 
         logger.info(
             "Bronze streaming query started",

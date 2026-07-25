@@ -6,16 +6,16 @@ class BronzeResources:
     catalog: str
     source_path: str
     checkpoint_path: str
-    target_table: str
+    bronze_table: str
 
 
 @dataclass(frozen=True)
 class SilverResources:
     catalog: str
-    source_table: str
-    target_table: str
+    bronze_table: str
+    silver_table: str
     quarantine_table: str
-    checkpoint_path: str
+    silver_checkpoint_path: str
     quarantine_checkpoint_path: str
 
 
@@ -29,7 +29,7 @@ def get_bronze_resources(
         checkpoint_path=(
             f"/Volumes/{catalog}/ops/checkpoints/autoloader/{feed_name}"
         ),
-        target_table=f"{catalog}.bronze.{feed_name}",
+        bronze_table=f"{catalog}.bronze.{feed_name}",
     )
 
 
@@ -43,11 +43,11 @@ def get_silver_resources(
 
     return SilverResources(
         catalog=catalog,
-        source_table=f"{catalog}.bronze.{feed_name}",
-        target_table=f"{catalog}.silver.{feed_name}",
+        bronze_table=f"{catalog}.bronze.{feed_name}",
+        silver_table=f"{catalog}.silver.{feed_name}",
         quarantine_table=(
             f"{catalog}.data_quality.{feed_name}_quarantine"
         ),
-        checkpoint_path=f"{checkpoint_root}/valid",
+        silver_checkpoint_path=f"{checkpoint_root}/valid",
         quarantine_checkpoint_path=f"{checkpoint_root}/quarantine",
     )
